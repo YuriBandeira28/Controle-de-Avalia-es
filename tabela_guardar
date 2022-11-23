@@ -1,0 +1,50 @@
+<table class="table">
+     <!--Inserts de valores nas tabelas-->
+     <tr>
+          <th>#</th>
+          <th>Matéria</th>
+          <th>Peso</th>
+          <th>Data</th>
+          <th>Editar</th>
+          <th>Excluir</th>
+     </tr>
+     <tr>
+          <th scope="row">1</th>
+          <td>Fisica</td>
+          <td>7</td>
+          <td>28/9</td>
+          <td><a style="color:#fff;" href="#"><span><i class="bi bi-pencil-square"></i></span></a></td>
+          <td><a style="color:#fff;" href="#"><span><i class="bi bi-trash3"></i></span></a></td>
+     </tr>
+</table>
+
+
+
+
+
+<table class="table text-white">
+     <thead>
+         <tr style="color:white;">
+             <th scope="col">#</th>
+             <th scope="col">Matéria</th>
+             <th scope="col">Peso</th>
+             <th scope="col">Data</th>
+             <th scope="col">Editar</th>
+             <th scope="col">Excluir</th>
+         </tr>
+     </thead>
+     <tbody>
+         <?php
+         while ($user_data = mysqli_fetch_assoc($result)) {
+             echo "<tr>";
+             echo "<td>" . $user_data['id'] . "<td>";
+             echo "<td>" . $user_data['materia'] . "<td>";
+             echo "<td>" . $user_data['peso'] . "<td>";
+             echo "<td>" . $user_data['data_av'] . "<td>";
+             echo "<td><a style='color:#fff;' href='#'><span><i class='bi bi-pencil-square'></i></span></a></td>";
+             echo "<td><a style='color:#fff;' href='#'><span><i class='bi bi-trash3'></i></span></a></td>";
+             echo "</tr>";
+         }
+         ?>
+     </tbody>
+ </table>

@@ -1,0 +1,9 @@
+#ff0043 - vermehl0
+#fafafa - branco
+#535353 - preto
+
+
+cores dark
+#100f10
+#1b1b1b
+#242424
