@@ -109,8 +109,8 @@
                         echo "<td>". $user_data['id_usr']. "</td>";
                     }
                     if ($tipo_usr['tipo'] != "admin"){
-                        echo "<td><button style='color:#fff; background-color:Transparent; border:none' data-toggle='modal' data-target='#modalupdate'><span><i class='bi bi-pencil-square'></i></span></button></td>";
-                        echo "<td><button style='color:#fff; background-color:Transparent; border:none' data-toggle='modal' data-target='#modaldelete'><span><i class='bi bi-trash3'></i></span></button></td>";
+                        echo "<td><a style='color:#fff; background-color:Transparent; border:none' href='update.php?id=$user_data[id_av]'><i class='bi bi-pencil-square'></i></a></td>";
+                        echo "<td><a style='color:#fff; background-color:Transparent; border:none' href='delete.php?id=$user_data[id_av]'><span><i class='bi bi-trash3'></i></span></a></td>";
                     }
                     echo "</tr>";
                 } 
@@ -142,48 +142,7 @@
             </div>
         </div>
     <!--modal de atualizar-->
-    <div class="modal fade" id="modalupdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" style="background-color:#535353;">
-                    <div class="modal-header">
-                        <h5 style="color:white;" class="modal-title" id="exampleModalLabel">Inserção de Avaliações</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        <form class="formStyle1" method="post" action="update.php">
-
-                            <div>
-                                <p style="color:white;">Matéria</p>
-                                <input style=" border-radius:7px;" type="text" class="inp1" name="updatemateria" placeholder="Matéria">
-                            </div>
-                            <br>
-                            <div>
-                                <p style="color:white;">Peso</p>
-                                <input style=" border-radius:7px;" type="number" class="inp1" name="updatepeso" placeholder="Peso da Avaliação">
-                            </div>
-                            <br>
-                            <div>
-                                <p style="color:white;">Data</p>
-                                <input style=" border-radius:7px;" type="date" class="inp1" id="date" name="updatedata" placeholder="Data da Avaliação">
-                            </div>
-                            
-
-                    </div>
-                    <br>
-                    <div>
-                        <button style="background-color:red;border:none;color:white" type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        <button style="background-color:white;border:none;color:black;" class="btn btn-primary">Atualizar</button>
-
-                    </div>
-                    <br>
-                    </form>
-
-                </div>
-            </div>
-        </div>
+    
 
     <div class="container">
 

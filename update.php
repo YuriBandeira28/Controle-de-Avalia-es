@@ -1,38 +1,84 @@
-<?php
-session_start();
-    $CONN = new mysqli("localhost", "root", "", "banco_de_dados");
 
-    $updatemateria = $_POST["updatemateria"];
-    $updatepeso = $_POST["updatepeso"];
-    $updatedata = $_POST["updatedata"];
+<?php
+
+if(!empty($_GET['id'])){
+
+    session_start();    
+    $CONN = new mysqli("localhost", "root", "", "banco_de_dados");
     $user = htmlspecialchars($_SESSION["id"]);
     $username = htmlspecialchars($_SESSION["username"]);
 
-    $CONNECT = new mysqli("localhost", "root", "", "banco_de_dados");
+    $id =  $_GET['id'];
 
-    $sql = "SELECT * FROM avaliacoes where id_usr = '$user' ORDER BY id_av";
-    $result = $CONN->query($sql);
-    $id =  mysqli_fetch_assoc($result)['id_av'];
+    $sqlSelect = "SELECT * FROM avaliacoes where id_usr = '$user' and id_av = '$id'";
 
-    if ($updatemateria != null){
-
-        $SQL = "UPDATE avaliacoes set materia = '$updatemateria' where id_usr = $user and id_av = $id";
-        $CONN ->query($SQL);
-    
+    $result = $CONN->query($sqlSelect);
+    if ($result->num_rows > 0){
+        while($user_data = mysqli_fetch_assoc($result)){
+            $materia = $user_data['materia'];
+            $peso =$user_data['peso'];
+            $data = $user_data['data_av'];
+        }
     }
-    if ($updatepeso != null){
-
-        $SQL = "UPDATE avaliacoes set peso = '$updatepeso' where id_usr = $user and id_av = $id";
-        $CONN ->query($SQL);
-      
+    else{
+        header('Location: main.php');
     }
-    if ($updatedata != null){
-
-        $SQL = "UPDATE avaliacoes set data_av = '$updatedata' where id_usr = $user and id_av = $id";
-        $CONN ->query($SQL);
-    }
-    
-    header('Location: main.php');
-    $CONNECT -> close();
+   
+}
 
 ?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>update</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .wrapper {
+            width: 360px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body class="body">
+    <div class="container">
+        <div class="wrapper">
+            <h2>Atualizar Avaliação</h2>
+            <p>Por favor, preencha este todos os campos do formulário</p>
+            <form method="post" action="saveEdit.php">
+                <div>
+                    <input hidden name="id_av" value="<?php echo $id ?>"/>
+
+                    <p style="color:white;">Matéria</p>
+                    <input style=" border-radius:7px;" type="text" class="inp1" name="materia1" placeholder="Matéria" value="<?php echo $materia ?>">
+                </div>
+                <br>
+                <div>
+                    <p style="color:white;">Peso</p>
+                    <input style=" border-radius:7px;" type="number" class="inp1" name="peso1" placeholder="Peso da Avaliação" value="<?php echo $peso ?>">
+                </div>
+                <br>
+                <div>
+                    <p style="color:white;">Data</p>
+                    <input style=" border-radius:7px;" type="date" class="inp1" name="data1" placeholder="Data da Avaliação" value="<?php echo $data ?>">
+                </div>
+        
+            <br>
+            <div>
+                <a style="background-color:red;border:none;color:white" type="button" class="btn btn-secondary" data-dismiss="modal" href="main.php">Fechar</a>
+                <input type="submit" name="update" id="update" style="background-color:white;border:none;color:black;" class="btn btn-primary"></button>
+
+
+            </div>
+            <br>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
+
