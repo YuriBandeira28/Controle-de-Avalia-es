@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
         // Prepare uma declaração de inserção
-        $sql = "INSERT INTO users (username, passwordm, tipo) VALUES (:username, :password, 'nornmal')";
+        $sql = "INSERT INTO users (username, password, tipo) VALUES (:username, :password, 'nornmal')";
          
         if($stmt = $pdo->prepare($sql)){
             // Vincule as variáveis à instrução preparada como parâmetros
